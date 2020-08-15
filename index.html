@@ -1,1 +1,209 @@
-<h1>HOLA</h1>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fake News Analysis</title>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="./style.css">
+
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-lg">
+		<div class="collapse navbar-collapse text-right container">
+			<ul class="navbar-nav">
+				<li class="nav-item dropdown">
+					<a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Contenido</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<a href="#cont" class="dropdown-item">Contenido</a>
+						<a href="#intro" class="dropdown-item">Introducción</a>
+						<a href="#obje" class="dropdown-item">Objetivo</a>
+						<a href="#meto" class="dropdown-item">Metodología</a>
+						<a href="#result" class="dropdown-item">Resultados</a>
+						<a href="#analisis" class="dropdown-item">Análisis</a>
+						<a href="#conclusion" class="dropdown-item">Conclusión</a>
+					</div>
+				</li>
+				<li class="nav-item">
+					<a href="#video" class="nav-link">Video</a>
+				</li>
+				<li class="nav-item">
+					<a href="#" class="nav-link">Repository</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<main role="main" class="container">
+
+		<div class="text-center" id="title">
+			<h1>Fake News Prediction</h1>
+		</div>
+		
+
+		<div class="section container row" id="cont">
+
+
+			<div class="col">
+				<h2>Contenido</h2>
+				<ul id="content">
+					<li><a href="#intro">Introducción</a></li>
+					<li><a href="#obje">Objetivo</a></li>
+					<li><a href="#meto">Metodología</a>
+						<ul>
+							<li><a href="#scraping">Web scraping</a></li>
+							<li><a href="#neuron">Red neuronal</a></li>
+							<li><a href="#series">Time series</a></li>
+						</ul>
+					</li>
+					<li><a href="#result">Resultados</a></li>
+					<li><a href="#analisis">Análisis</a></li>
+					<li><a href="#conclusion">Conclusión</a></li>
+					<li><a href="#video">Video del proyecto</a></li>
+					<li><a href="#refer">Referencias</a></li>
+				</ul>
+			</div>
+
+			<div class="col">
+				<img src="https://lh3.googleusercontent.com/gGxThhPrHgX47NiHhcwZo4FcRBwuoUPhi467tMZNoXNbenBdfiE3QvlC0vgARinHhBV7-K0KdRTYWI-7XZlIprHZeYmLGVOhnz9sxyKzi1wMMfGiVk4vVr5MdZsMfRkdgYc4CR7dHg=w2400" alt="fake news image" class="img-fluid" id="img1">
+			</div>
+
+		</div>
+
+
+
+		<div class="section" id="intro">
+			<h2>Introducción</h2>
+
+			<p>A la par de la reciente propagación de Covid19 a nivel global, ha surgido una gran desinformación entre la población. Es un tema tan delicado que incluso la OMS ha usado el término “desinfodemia” para hacer referencia a la práctica de difundir noticias falsas o información incorrecta relacionada con la pandemia (Mendoza, 2020; UN News, 2020). Estas noticias han hecho circular información, mensajes, audios y videos que distribuían tratamientos carentes de evidencia científica e, incluso, que negaban la existencia del virus (Mendoza, 2020). Guy Berger, Director de Políticas y Estrategias de Comunicación e Información de la UNESCO, explicó:</p>
+
+			<blockquote>"Cuando la desinformación es repetida y amplificada, especialmente por personas influyentes, el grave peligro es que la información fidedigna, termina teniendo un impacto marginal.” (UN News, 2020)</blockquote>
+		</div>
+
+
+
+		<div class="section" id="obje">
+			<h2>Objetivo</h2>
+			<p>Encontrar una manera de clasificar a los tweets como fake news y a partir de esto analizar la propagación de fake news en los tweets en español desde el 29 de junio hasta el 12 de agosto de 2020..</p>
+		</div>
+
+
+
+
+		<div class="section" id="meto">
+			<h2>Metodología</h2>
+			<p>Debido a la gran cantidad de información en Twitter y de la variedad en las fake news, se utilizará un algoritmo computacional para esta clasificación. Para poder entrenar este algoritmo primero se necesitaba identificar las fake news de aquellas que no lo eran. Para ello, se decidió buscar cuentas de twitter dedicadas a la creación de fake news.</p>
+			<p>De acuerdo con Prada Collazos, existen cuentas de Twitter donde todos los tweets son hechos explícitamente como fake news con el objetivo principal de divertir al público. Sin embargo, muchas veces estas fake news son esparcidas por el público indiscriminadamente ya que no tienen claro el objetivo de estas cuentas. Algunos ejemplos son <a href="">@actualidadpanam</a> y <a href="">@eldeforma</a>. El algoritmo también necesitaba tener una muestra de tweets con noticias reales para aprender la diferencia entre estos y las fake news. Para esto se decidió usar la cuenta de <a href="">@eltiempo</a> debido a que el director de este periódico asegura que solo publican noticias que ya fueron comprobadas como verdaderas.</p>
+			<p>Se creó un algoritmo que nos permitió buscar por cuenta de Twitter con la implementación de la librería de  GetOldTweets3</p><pre><code># Importing GetOldTweets3
+import GetOldTweets3 as got
+# Importing pandas
+import pandas as pd
+
+def get_tweets(search, startdate, enddate, maxtweet):
+  tweetCriteria = got.manager.TweetCriteria().setQuerySearch(search)\
+                                        	.setSince(startdate)\
+                                        	.setUntil(enddate)\
+                                        	.setMaxTweets(maxtweet)\
+                                        	.setLang('es')
+  tweet = got.manager.TweetManager.getTweets(tweetCriteria)
+    
+  text_tweets = [[tw.username,
+            	tw.text,
+            	tw.date,
+            	tw.retweets,
+            	tw.favorites,
+            	tw.mentions,
+            	tw.hashtags,
+            	tw.geo] for tw in tweet]
+  df_state= pd.DataFrame(text_tweets, columns = ['User', 'Text', 'Date', 'Favorites', 'Retweets', 
+  'Mentions','Hashtags', 'Geolocation'])
+    
+  return df_state</code></pre>
+  			<p>Una vez desarrollada la base de datos, se crearon algoritmos de clasificación supervisados. Es decir, algoritmos donde ya se sabía la clasificación del tweet para ayudar a que el aprendizaje fuera más rápido. Esto con el propósito de posteriormente aplicar el algoritmo a una base de datos donde no se supiera si los tweets contenían noticias reales o falsas.</p>
+  			<p>Como datos principales a analizar se utilizaron tweets en español. Usando la herramienta de Twarc, otra librería que se puede usar en la terminal de la computadora, se realizó un web scraping para recolectar tweets desde la fecha del 29 de junio hasta el 12 de agosto. Con esto se consiguió un total de 414,024 tweets como muestra.</p>
+
+  			<p>Los tweets obtenidos con webscraping tienen la siguiente estructura:</p>
+  			<img src="#" alt="imagen de base de datos" class="img-fluid img-content">
+
+  			<p>En este punto se encontró un dilema, ¿qué componentes eran los que más determinaban si un tweet era fake? ¿solamente el texto o existe otro componente que también proporcione información? Se quería comprobar cuáles otras características de un tweet podrían ayudar a clasificarlo como noticia verdadera o falsa. Es por esto que se analizó el texto, la cantidad de favoritos, la cantidad de retweets, las menciones (cuando existían) y los hashtags (cuando existían) para definir si eran determinantes para la decisión de clasificación. Para esto el algoritmo de Random Forest a la par de la primera base de datos (a partir de ahora denominada ‘datos fake news’) fueron usados para determinar el porcentaje que cada uno de los componentes antes mencionados contribuyen a la clasificación de una noticia.</p>
+  			<p>A partir de este análisis se determinó que el único componente relevante era el texto del tweet en sí. Es por esto que la información se recortó y clasificó de diferente manera dejando solo las columnas de user, text, date y prediction. User y date se mantuvieron para poder identificar los tweets pero no influyen de ninguna manera para la clasificación. Como último paso del entrenamiento del algoritmo, se hizo un análisis del texto, EDA: Exploratory Data Analysis por sus siglas en inglés, para cada tipo de noticia. Las visualizaciones más destacables son las siguientes:</p>
+  			<img src="#" alt="visual 1" class="img-fluid img-content">
+  			<img src="#" alt="visual 2" class="img-fluid img-content">
+		</div>
+
+
+
+
+
+		<div class="section" id="result">
+			<h2>Resultados</h2>
+		</div>
+
+
+
+
+
+
+
+
+		<div class="section" id="analisis">
+			<h2>Análisis</h2>
+		</div>
+
+
+
+
+
+
+
+
+
+		<div class="section" id="conclusion">
+			<h2>Conclusión</h2>
+		</div>
+
+
+
+
+
+
+
+
+
+		<div class="section" id="refer">
+			<h2>Referencias</h2>
+			<p>Mendoza, M. Á. (2020, July 02). Fake news y sus riesgos en tiempos de COVID 19. Retrieved from <a href="https://www.welivesecurity.com/la-es/2020/07/02/fake-news-riesgos-covid-19/" target="_blank">https://www.welivesecurity.com/la-es/2020/07/02/fake-news-riesgos-covid-19/</a></p>
+
+			<p>UN News. (2020, April 13). During this coronavirus pandemic, 'fake news' is putting lives at risk: UNESCO. Retrieved from <a href="https://news.un.org/en/story/2020/04/1061592" target="_blank">https://news.un.org/en/story/2020/04/1061592</a></p>
+		</div>
+
+		<div class="section" id="video">
+			<h2>Video del proyecto</h2>
+			<iframe width="1023" height="585" src="https://www.youtube.com/embed/EgBJmlPo8Xw?list=RDDm9Zf1WYQ_A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		</div>
+
+		
+		
+		
+
+	</main>
+
+
+	<footer class="navbar">
+		<p>made by xime-lp</p>
+	</footer>
+
+
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+</body>
+</html>
