@@ -1,0 +1,111 @@
+
+
+
+
+
+body {
+	font-family: 'Open Sans', sans-serif;
+	text-align: justify;
+}
+.info {
+	width: 80%;
+	margin: 0 auto;
+	padding: 5px 0;
+}
+.navbar {
+	background-color: black;
+}
+.navbar-nav a {
+	font-weight: bold;
+	color: white;
+}
+.navbar-nav a:hover {
+	font-weight: bold;
+	color: black;
+	background-color: white;
+}
+
+.dropdown-menu {
+	background-color: black;
+}
+#title {
+	margin: 40px auto 60px auto;
+}
+
+h1 {
+	font-size: 3em;
+	font-weight: bolder;
+}
+h1,h2,h3 {
+	font-family: 'Montserrat', sans-serif;
+}
+
+#img1 {
+	width: 100%;
+	margin: auto;
+}
+
+main.container {
+	width: 80%;
+}
+
+.section {
+	margin: 40px 0;
+}
+#cont {
+	margin-top: 0;
+	padding: 0;
+}
+#cont .col {
+	padding: 0;
+}
+
+h2 {
+	margin: 10px 0;
+	font-weight: bold;
+	font-size: 1.4em;
+}
+
+h3 {
+	font-size: 1.1em;
+}
+blockquote {
+	background-color: #eee;
+	padding: 10px;
+	border-radius: 5px;
+	width: 90%;
+	margin: auto;
+	font-style: italic;
+}
+
+pre {
+	background-color: #eee;
+	padding: 10px;
+	border-radius: 5px;
+	width: 90%;
+	margin: auto;
+	margin-bottom: 30px;
+}
+
+.img-content {
+	width: 60%;
+	display: inline-block;
+	margin: auto;
+	margin-bottom: 30px;
+}
+
+#database {
+	width: 100%;
+}
+
+iframe {
+	width: 100%;
+}
+
+footer {
+	background-color: black;
+	color: white;
+}
+footer p {
+	margin: 0;
+}
