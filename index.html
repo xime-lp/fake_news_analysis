@@ -6,7 +6,7 @@
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-	<link rel="stylesheet" href="https://raw.githubusercontent.com/xime-lp/fake_news_analysis/master/style.css">
+	<link rel="stylesheet" href="./style.css">
 
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,16 +23,16 @@
 						<a href="#intro" class="dropdown-item">Introducción</a>
 						<a href="#obje" class="dropdown-item">Objetivo</a>
 						<a href="#meto" class="dropdown-item">Metodología</a>
-						<a href="#result" class="dropdown-item">Resultados</a>
-						<a href="#analisis" class="dropdown-item">Análisis</a>
-						<a href="#conclusion" class="dropdown-item">Conclusión</a>
+						<a href="#result" class="dropdown-item">Resultados y análisis</a>
+						<a href="#conclusion" class="dropdown-item">Conclusiones</a>
+						<a href="#refer" class="dropdown-item">Referencias</a>
 					</div>
 				</li>
 				<li class="nav-item">
-					<a href="#video" class="nav-link">Video</a>
+					<a href="https://youtu.be/_XL4IDCCDYU" class="nav-link" target="_blank">Video</a>
 				</li>
 				<li class="nav-item">
-					<a href="#" class="nav-link">Repository</a>
+					<a href="https://github.com/SelmaOE/Fake-News" class="nav-link" target="_blank">Repository</a>
 				</li>
 			</ul>
 		</div>
@@ -88,7 +88,7 @@
 
 		<div class="section" id="obje">
 			<h2>Objetivo</h2>
-			<p>Encontrar una manera de clasificar a los tweets como fake news y a partir de esto analizar la propagación de fake news en los tweets en español desde el 29 de junio hasta el 12 de agosto de 2020..</p>
+			<p>Encontrar una manera de clasificar a los tweets como fake news y a partir de esto analizar los tweets en español desde el 29 de junio hasta el 12 de agosto de 2020..</p>
 		</div>
 
 
@@ -97,8 +97,10 @@
 		<div class="section" id="meto">
 			<h2>Metodología</h2>
 			<p>Debido a la gran cantidad de información en Twitter y de la variedad en las fake news, se utilizará un algoritmo computacional para esta clasificación. Para poder entrenar este algoritmo primero se necesitaba identificar las fake news de aquellas que no lo eran. Para ello, se decidió buscar cuentas de twitter dedicadas a la creación de fake news.</p>
-			<p>De acuerdo con Prada Collazos, existen cuentas de Twitter donde todos los tweets son hechos explícitamente como fake news con el objetivo principal de divertir al público. Sin embargo, muchas veces estas fake news son esparcidas por el público indiscriminadamente ya que no tienen claro el objetivo de estas cuentas. Algunos ejemplos son <a href="">@actualidadpanam</a> y <a href="">@eldeforma</a>. El algoritmo también necesitaba tener una muestra de tweets con noticias reales para aprender la diferencia entre estos y las fake news. Para esto se decidió usar la cuenta de <a href="">@eltiempo</a> debido a que el director de este periódico asegura que solo publican noticias que ya fueron comprobadas como verdaderas.</p>
-			<p>Se creó un algoritmo que nos permitió buscar por cuenta de Twitter con la implementación de la librería de  GetOldTweets3</p><pre><code># Importing GetOldTweets3
+
+			<p>De acuerdo con Prada Collazos, existen cuentas de Twitter donde todos los tweets son hechos explícitamente como fake news con el objetivo principal de divertir al público. Sin embargo, muchas veces estas fake news son esparcidas por el público indiscriminadamente ya que no tienen claro el objetivo de estas cuentas. Algunos ejemplos son <a href="https://twitter.com/actualidadpanam" target="_blank">@actualidadpanam</a> y <a href="https://twitter.com/eldeforma" target="_blank">@eldeforma</a>. El algoritmo también necesitaba tener una muestra de tweets con noticias reales para aprender la diferencia entre estos y las fake news. Para esto se decidió usar la cuenta de <a href="https://twitter.com/ELTIEMPO" target="_blank">@ELTIEMPO</a> debido a que el director de este periódico asegura que solo publican noticias que ya fueron comprobadas como verdaderas.</p>
+
+			<p>Se creó un algoritmo que nos permitió buscar por cuenta de Twitter con la implementación de la librería de  <b>GetOldTweets3</b></p><pre><code># Importing GetOldTweets3
 import GetOldTweets3 as got
 # Importing pandas
 import pandas as pd
@@ -124,15 +126,28 @@ def get_tweets(search, startdate, enddate, maxtweet):
     
   return df_state</code></pre>
   			<p>Una vez desarrollada la base de datos, se crearon algoritmos de clasificación supervisados. Es decir, algoritmos donde ya se sabía la clasificación del tweet para ayudar a que el aprendizaje fuera más rápido. Esto con el propósito de posteriormente aplicar el algoritmo a una base de datos donde no se supiera si los tweets contenían noticias reales o falsas.</p>
-  			<p>Como datos principales a analizar se utilizaron tweets en español. Usando la herramienta de Twarc, otra librería que se puede usar en la terminal de la computadora, se realizó un web scraping para recolectar tweets desde la fecha del 29 de junio hasta el 12 de agosto. Con esto se consiguió un total de 414,024 tweets como muestra.</p>
+
+  			<p>Como datos principales a analizar se utilizaron tweets en español. Usando la herramienta de <b>Twarc</b>, otra librería que se puede usar en la terminal de la computadora, se realizó un web scraping para recolectar tweets desde la fecha del 29 de junio hasta el 12 de agosto. Con esto se consiguió un total de 414,024 tweets como muestra.</p>
 
   			<p>Los tweets obtenidos con webscraping tienen la siguiente estructura:</p>
-  			<img src="#" alt="imagen de base de datos" class="img-fluid img-content">
+  			<img src="https://lh3.googleusercontent.com/t5SI8fNEr_3Fbcep0f53biUQpehr3sXgy-wyPZPwTOGpu7I5qrJXn7V4fuRTAYZFxpcG7LboLia2s_q5TA6IWQ8qet9_BV3NjCQZbjrXC_j9L3lmx4LZWK6-road7yisXQq_2mrrpQ=w2400" alt="imagen de base de datos" class="img-fluid img-content" id="database">
 
-  			<p>En este punto se encontró un dilema, ¿qué componentes eran los que más determinaban si un tweet era fake? ¿solamente el texto o existe otro componente que también proporcione información? Se quería comprobar cuáles otras características de un tweet podrían ayudar a clasificarlo como noticia verdadera o falsa. Es por esto que se analizó el texto, la cantidad de favoritos, la cantidad de retweets, las menciones (cuando existían) y los hashtags (cuando existían) para definir si eran determinantes para la decisión de clasificación. Para esto el algoritmo de Random Forest a la par de la primera base de datos (a partir de ahora denominada ‘datos fake news’) fueron usados para determinar el porcentaje que cada uno de los componentes antes mencionados contribuyen a la clasificación de una noticia.</p>
-  			<p>A partir de este análisis se determinó que el único componente relevante era el texto del tweet en sí. Es por esto que la información se recortó y clasificó de diferente manera dejando solo las columnas de user, text, date y prediction. User y date se mantuvieron para poder identificar los tweets pero no influyen de ninguna manera para la clasificación. Como último paso del entrenamiento del algoritmo, se hizo un análisis del texto, EDA: Exploratory Data Analysis por sus siglas en inglés, para cada tipo de noticia. Las visualizaciones más destacables son las siguientes:</p>
-  			<img src="#" alt="visual 1" class="img-fluid img-content">
-  			<img src="#" alt="visual 2" class="img-fluid img-content">
+  			<p>En este punto se encontró un dilema, ¿qué componentes eran los que más determinaban si un tweet era fake? ¿solamente el texto o existe otro componente que también proporcione información? Se quería comprobar cuáles otras características de un tweet podrían ayudar a clasificarlo como noticia verdadera o falsa. Es por esto que se analizó el texto, la cantidad de favoritos, la cantidad de retweets, las menciones (cuando existían) y los hashtags (cuando existían) para definir si eran determinantes para la decisión de clasificación. Para esto el algoritmo de <b>Random Forest</b> y la primera base de datos (a partir de ahora denominada ‘datos fake news’) fueron usados para determinar el porcentaje que cada uno de los componentes antes mencionados contribuyen a la clasificación de una noticia.</p>
+
+  			<p>A partir de este análisis se determinó que el único componente relevante era el texto del tweet en sí. Es por esto que la información se recortó y clasificó de diferente manera dejando solo las columnas de user, text, date y prediction. User y date se mantuvieron para poder identificar los tweets pero no influyen de ninguna manera para la clasificación. Como último paso del entrenamiento del algoritmo, se hizo un análisis del texto, <b>EDA: Exploratory Data Analysis</b> por sus siglas en inglés, para cada tipo de noticia. Las visualizaciones más destacables son las siguientes:</p>
+
+  			<img src="https://lh3.googleusercontent.com/wL9Xy_LuwVLZV3XXiZ-f7o_vDblHFMH7aDqRw0OMK3HCtvIAJgacj9lXjVxrvBGj2-v2kNg_pnuETftfoKuh5evXthl4LTI5ECghIB4r0Wv0YBgeYPrGO5CMCez0eg5jPb4HPcT3zg=w2400" alt="visual 1" class="img-fluid img-content">
+  			<img src="https://lh3.googleusercontent.com/APFRNPTlEplTQXXJlQOYM-dEPvSoZiob2KKR5Mlji4l519LkxXjdG683Rzmll1KUFJ84RvkPrkfUOjxlTt_RjazCrKHO8J_fnW0VLoMdA2bQAI_5djHUsz9TOSpIVAuVtvDe5nf13w=w2400" alt="visual 2" class="img-fluid img-content">
+
+  			<p>A partir de aquí se utilizaron cuatro etiquetas para evaluar la efectividad del algoritmo de clasificación desarrollado por Random Forest. Una <b>etiqueta positiva</b> indica que una noticia es falsa y una <b>etiqueta negativa</b> indica que una noticia tiene información fidedigna. Las interpretaciones son:</p>
+  			<ul>
+  				<li><b>True positives (TP):</b> Nuestra predicción dijo que el Tweet es Fake news y la etiqueta real dice que SÍ es.</li>
+  				<li><b>False positives (FP):</b> Nuestra predicción dijo que el Tweet es Fake news y la etiqueta real dice que NO es.</li>
+  				<li><b>True negatives (TN):</b> Nuestra predicción dijo que el Tweet es legítimo y la etiqueta real dice que es Fake.</li>
+  				<li><b>False negatvies (FN):</b> Nuestra predicción dijo que el Tweet es legítimo y la etiqueta real dice que SÍ es legítimo.</li>
+  			</ul>
+
+  			<p>A partir de esto se planeaba crear una red neuronal que pudiera identificar si un nuevo tweet es fake news o noticias verdaderas a partir de esta información. Sin embargo, el algoritmo no fue completado a tiempo debido a la dificultad de la tarea.</p>
 		</div>
 
 
@@ -140,20 +155,21 @@ def get_tweets(search, startdate, enddate, maxtweet):
 
 
 		<div class="section" id="result">
-			<h2>Resultados</h2>
+			<h2>Resultados y análisis</h2>
+
+			<p>Los siguientes son los datos obtenidos por el algoritmo de Random Forest sobre las palabras más comunes en las fake news.</p>
+			<img src="https://lh3.googleusercontent.com/VjyUdMsHtr6j56Rgp0gDJ7uEHaHR4NNLtGjqg49JMe0aNx7djwK2NWDi1sMw4Yh-6F0tFiOw2yHtF28ICNw2OlIZ8_yt-GrP8NmQPraUMIfqKnR_hnDLb9rQlSMgW0ubm0VmgdKUPQ=w2400" alt="" class="img-fluid img-content">
+			
+			<p>Curva ROC de la razón de verdaderos positivos (TPR) contra contra la razón de falsos positivos (FPR). </p>
+			<img src="https://lh3.googleusercontent.com/CfZLb5FmrCv4K0fzAkn5ZQigv-sVGmYMW1Sv7W3wO1WQMxjHgyij4m_bbq5NUNWLo22bYCZneToxbjHjLMCot_xdcnHdiVtZg8JcyJxqI64D2HkKIAeH_6cUaQB1aywDirw9sUI29g=w2400" alt="" class="img-fluid img-content">
+			
+			<p>Tabla de contingencia de la clasificación de tweets.</p>
+			<img src="https://lh3.googleusercontent.com/KwTfg7BznF6qd0EJ8Q5PAYFhoyoD2hnK7SNsgbYeFOUa5HESpqRe0TGZgejtv3GLVEO0aw0Oo4Qqv0YRtMhINlctulHDyfyMYYvcHLUhswke_q4dMQ_sSBvl2YCYjGEJ37p28W7c8Q=w2400" alt="" class="img-fluid img-content">
+
+			<p>A partir de la primera gráfica podemos deducir que las palabras que más se repiten en un tweet que es Fake News son “http”, “amp”, “contamos”, “aquí” y “bogotá”. Sin embargo, lo que es un poco sorprendente es que, como se puede ver en las nubes de palabras en la parte de metodología, todas estas palabras también se repiten en los tweets que contienen noticias reales. Esto quiere decir que aunque la información contenida dentro de un tweet es el mejor componente para determinar si algo es fake news o no, aún así tienen muchos puntos en común.</p>
+
+			<p>Sin embargo, esto no afectó la exactitud del modelo que es bastante alta puesto que se logró tener una exactitud del 81.63% en la data que reservamos para predecir. Más específicamente el algoritmo tiende a fallar un poco más en detectar fake news debido  a que, según la gráfica ROC y la tabla de contingencia anteriores, tendemos a clasificar como reales los tweets que realmente son fake news. </p>
 		</div>
-
-
-
-
-
-
-
-
-		<div class="section" id="analisis">
-			<h2>Análisis</h2>
-		</div>
-
 
 
 
@@ -163,7 +179,12 @@ def get_tweets(search, startdate, enddate, maxtweet):
 
 
 		<div class="section" id="conclusion">
-			<h2>Conclusión</h2>
+			<h2>Conclusiones</h2>
+			<p>Durante todo el proyecto se usó la misma semilla para que se pudiera lograr una replicabilidad de los datos, lo único que podría variar es el tiempo de ejecución dependiendo de las características de la computadora donde se pruebe. Para hacer más sencilla la reproductividad, se documentaron los pasos más importantes en dos libretas de jupyter. La primera contiene la exploración de datos y el random forest que permitió la comprobación de los componentes principales. La segunda contiene los dos modelos probados y la predicción con el mejor modelo. Ambas se encuentran en el repositorio ligado a esta página.</p>
+
+			<p>Como se pudo ver, el modelo desarrollado fue bastante exitoso al clasificar fake news como tales. Sin embargo, hay varias noticias que el algoritmo clasifica como reales cuando realmente no lo son, por lo que se necesita un algoritmo más especializado para efectos prácticos. La razón principal de esto es que el algoritmo desarrollado para esta investigación encontraba muchas palabras similares entre las fake news y las noticias reales por lo que era complicado discernir entre ambas. Aunado a esto, no fue posible completar una red neuronal la cual podría haber dado resultados más precisos. Una manera de mitigar estos errores es comparar los resultados del algoritmo con fuentes confiables y fidedignas.</p>
+
+			<p>Finalmente, una posible explicación para las similitudes entre las fake news y las noticias reales es que recientemente Twitter mejoró sus algoritmos para filtrar cada vez más la información falsa relacionada con el Coronavirus por lo que los tweets a los que sí se tuvo acceso son muy similares a noticias reales.</p>
 		</div>
 
 
@@ -180,13 +201,6 @@ def get_tweets(search, startdate, enddate, maxtweet):
 
 			<p>UN News. (2020, April 13). During this coronavirus pandemic, 'fake news' is putting lives at risk: UNESCO. Retrieved from <a href="https://news.un.org/en/story/2020/04/1061592" target="_blank">https://news.un.org/en/story/2020/04/1061592</a></p>
 		</div>
-
-		<div class="section" id="video">
-			<h2>Video del proyecto</h2>
-			<iframe width="1023" height="585" src="https://www.youtube.com/embed/EgBJmlPo8Xw?list=RDDm9Zf1WYQ_A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-		</div>
-
-		
 		
 		
 
@@ -194,6 +208,8 @@ def get_tweets(search, startdate, enddate, maxtweet):
 
 
 	<footer class="navbar">
+		<p>Track A - Sid task</p>
+		<p>Equipo: Ximena Leyva, Selma Ortega, Diego Mireles, Maria Fernanda Guzmán.</p>
 		<p>made by xime-lp</p>
 	</footer>
 
